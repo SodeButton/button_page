@@ -1,37 +1,87 @@
 body {
 	margin: 0 auto;
 	width: 900px;
-	min-height: 100vh;
+	min-height: 150vh;
+	background-color: lightgray;
 	display: grid;
 	grid-template:
-		"header header header" 150px
-		"left   center right " 1fr
-		"footer footer footer" 150px
-		/200px 1fr 200px;
+		"header header header header header" 150px
+		"...... ...... ...... ...... ......" 2px
+		"left   ...... center ...... right " 1fr
+		"...... ...... ...... ...... ......" 2px
+		"footer footer footer footer footer" 150px
+		/200px 2px 1fr 2px 200px;
 }
 
 header {
 	grid-area: header;
+	border-radius: 10px;
 	border: 2px solid black;
+}
+
+.title {
+	display: flex;
+	text-align: center;
+	line-height: 140px;
+	margin: 5px;
+}
+
+.title_h1 {
+	margin: 0;
+	font-size: 4em;
+	text-shadow: 1px 0 10px lime;
+}
+
+.title_image {
+	width: 120px;
+	margin: 0 50px;
+}
+
+.menu {
+	text-align: center;
+	font-size: 2em;
+	margin: 0;
+	border-radius: 10px;
+	text-shadow: 1px 0 10px red;
+}
+
+.nav {
+	text-align: center;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.nav li {
+	border-radius: 10px;
+	border: 2px solid black;
+	box-shadow: 2px 2px 2px black;
+	background-color: lightslategray;
+	margin: 3px 3px;
 }
 
 nav {
 	grid-area: left;
+	border-radius: 10px;
 	border: 2px solid black;
 }
 
 main {
 	grid-area: center;
+	border-radius: 10px;
 	border: 2px solid black;
 }
 
 aside {
 	grid-area: right;
+	border-radius: 10px;
 	border: 2px solid black;
 }
 
 footer {
 	grid-area: footer;
+	border-radius: 10px;
 	border: 2px solid black;
 }
 
@@ -43,5 +93,18 @@ footer {
 			"center" 1fr
 			"right " 50px
 			"footer" 150px;
+	}
+
+	nav,
+	.nav {
+		display: flex;
+	}
+
+	.menu {
+		margin: 0 20px;
+	}
+
+	.nav li {
+		width: 100px;
 	}
 }
