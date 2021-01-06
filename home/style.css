@@ -100,9 +100,13 @@ footer {
 	body {
 		grid-template:
 			"header" 150px
+			"......" 2px
 			"left  " 50px
+			"......" 2px
 			"center" 1fr
+			"......" 2px
 			"right " 50px
+			"......" 2px
 			"footer" 150px;
 	}
 
