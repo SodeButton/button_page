@@ -1,8 +1,7 @@
 body {
 	margin: 0 auto;
-	width: 900px;
 	min-height: 150vh;
-	background-color: lightgray;
+	background-color: white;
 	display: grid;
 	grid-template:
 		"header header header header header" 150px
@@ -34,7 +33,7 @@ header {
 
 .title_image {
 	width: 120px;
-	margin: 0 50px;
+	margin: 0 35px;
 }
 
 .menu {
@@ -56,9 +55,21 @@ header {
 .nav li {
 	border-radius: 10px;
 	border: 2px solid black;
-	box-shadow: 2px 2px 2px black;
+	box-shadow: 0px 0px 10px black;
 	background-color: lightslategray;
 	margin: 3px 3px;
+}
+
+.nav li:active {
+	box-shadow: 0px 0px 0px black;
+}
+
+.nav li:hover {
+	background-color: lightsteelblue;
+}
+.nav li a {
+	display: block;
+	padding: 0 1fr;
 }
 
 nav {
