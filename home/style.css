@@ -46,6 +46,7 @@ header {
 	margin: 0;
 	border-radius: 10px;
 	text-shadow: 1px 0 10px red;
+	height: 1fr;
 }
 
 .nav {
