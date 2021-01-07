@@ -46,7 +46,6 @@ header {
 	margin: 0;
 	border-radius: 10px;
 	text-shadow: 1px 0 10px red;
-	height: 1fr;
 }
 
 .nav {
@@ -62,7 +61,7 @@ header {
 	border: 2px solid black;
 	box-shadow: 0px 0px 10px black;
 	background-color: lightslategray;
-	margin: 3px 3px;
+	margin: auto 3px;
 }
 
 .nav li:active {
@@ -121,7 +120,7 @@ footer {
 	}
 
 	.menu {
-		margin: 0 20px;
+		margin: auto 20px;
 	}
 
 	.nav li {
