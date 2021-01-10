@@ -104,6 +104,16 @@ main h3 {
 	margin: 10px auto;
 	border-radius: 10px;
 	border: 2px solid white;
+	padding: 10px 20px;
+}
+
+.main_dl_button {
+	text-align: center;
+	border-radius: 5px;
+	background-color: cornflowerblue;
+	width: 250px;
+	margin: 0 auto;
+	padding: 10px 0;
 }
 
 aside {
@@ -145,4 +155,8 @@ footer {
 		width: 100px;
 		margin: auto 3px;
 	}
+}
+
+.none_a_bar {
+	text-decoration: none;
 }
