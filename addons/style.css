@@ -94,9 +94,16 @@ main {
 	padding: 20px;
 }
 
-main h4 {
-	margin: 0;
+main h3 {
+	margin: 20px auto;
 	text-align: center;
+}
+
+.main_temp {
+	text-align: center;
+	margin: 10px auto;
+	border-radius: 10px;
+	border: 2px solid white;
 }
 
 aside {
