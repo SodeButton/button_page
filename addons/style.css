@@ -99,21 +99,24 @@ main h3 {
 	text-align: center;
 }
 
+.sub_title {
+	color: dodgerblue;
+}
+
 .main_temp {
 	text-align: center;
-	margin: 10px auto;
+	margin: 20px auto;
 	border-radius: 10px;
 	border: 2px solid white;
 	padding: 10px 20px;
 }
 
 .main_dl_button {
-	text-align: center;
+	display: inline-block;
 	border-radius: 5px;
 	background-color: cornflowerblue;
-	width: 250px;
-	margin: 0 auto;
-	padding: 10px 0;
+	padding: 10px 30px;
+	margin: 10px auto;
 }
 
 aside {
