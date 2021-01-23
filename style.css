@@ -94,9 +94,29 @@ main {
 	padding: 20px;
 }
 
-main h4 {
-	margin: 0;
+main h3 {
+	margin: 20px auto;
 	text-align: center;
+}
+
+.sub_title {
+	color: dodgerblue;
+}
+
+.main_temp {
+	text-align: center;
+	margin: 20px auto;
+	border-radius: 10px;
+	border: 2px solid white;
+	padding: 10px 20px;
+}
+
+.main_dl_button {
+	display: inline-block;
+	border-radius: 5px;
+	background-color: cornflowerblue;
+	padding: 10px 30px;
+	margin: 10px auto;
 }
 
 aside {
@@ -138,4 +158,8 @@ footer {
 		width: 100px;
 		margin: auto 3px;
 	}
+}
+
+.none_a_bar {
+	text-decoration: none;
 }
