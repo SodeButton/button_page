@@ -11,7 +11,7 @@ const config = {
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
-	}, 
+	},
 	render: {
 		pixelArt: true
 	},
@@ -105,7 +105,7 @@ function update() {
 	this.physics.add.collider(ball, blocks, (hitObject1, hitObject2) => {
 		hitObject2.destroy();
 		console.log(hitObject2)
-		
+
 	}, null, this);
 
 	var pointer = this.input.activePointer;
