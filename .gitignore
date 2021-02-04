@@ -1,6 +1,14 @@
 .DS_Store
 node_modules
 /dist
+/backup
+/public
+/src
+sodebutton.github.io.code-workspace
+vue.config.js
+yarn.lock
+babel.config.js
+package.json
 
 # local env files
 .env.local
