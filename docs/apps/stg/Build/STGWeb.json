@@ -1,7 +1,7 @@
 {
-"companyName": "Dentsu.Hayashi.ShootingGame",
+"companyName": "Button.ShootingGame",
 "productName": "ShootingGame",
-"productVersion": "0.1",
+"productVersion": "0.2",
 "dataUrl": "STGWeb.data.unityweb",
 "wasmCodeUrl": "STGWeb.wasm.code.unityweb",
 "wasmFrameworkUrl": "STGWeb.wasm.framework.unityweb",
