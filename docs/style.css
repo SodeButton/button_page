@@ -14,7 +14,7 @@ body {
 		"left   ...... center ...... right " 1fr
 		"...... ...... ...... ...... ......" 5px
 		"footer footer footer footer footer" 150px
-		/200px 5px 1fr 5px 200px;
+		/200px 5px 1fr 5px 400px;
 }
 
 header {
@@ -123,6 +123,10 @@ aside {
 	grid-area: right;
 	border-radius: 10px;
 	border: 2px solid white;
+}
+
+.search > form > input {
+	background-color: #333333;
 }
 
 footer {

@@ -2,7 +2,7 @@
  * Author : Button501
  * License : MIT License
  */
-
+"use strict";
 const config = {
 	type: Phaser.AUTO,
 	parent: 'canvas',
@@ -85,7 +85,7 @@ function create() {
 
 	this.physics.world.checkCollision.down = false;
 
-	//reflect = this.sound.add("reflect");
+	reflect = this.sound.add("reflect");
 	blocks = this.physics.add.staticGroup();
 	blocks.scaleX = 0.5;
 	blocks.scaleY = 0.5;
@@ -104,8 +104,8 @@ function update() {
 	this.physics.add.collider(ball, bar, hitbar, null, this);
 	this.physics.add.collider(ball, blocks, (hitObject1, hitObject2) => {
 		hitObject2.destroy();
-		console.log(hitObject2)
-
+		console.log(hitObject2);
+		reflect.play();
 	}, null, this);
 
 	var pointer = this.input.activePointer;
@@ -127,7 +127,6 @@ function hitbar() {
 		ball.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
 		ball.dy = Math.sin(deg * Math.PI / 360) * ball.speed;
 		ball.body.velocity.set(ball.dx, ball.dy);
-
-		//reflect.play();
+		reflect.play();
 	}
 }
