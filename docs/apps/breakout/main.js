@@ -30,7 +30,7 @@ const config = {
 		create: create,
 		update: update
 	}
-}
+};
 
 const game = new Phaser.Game(config);
 
@@ -55,43 +55,35 @@ let reflect;
 let blocks;
 
 function preload() {
-	this.load.setPath("./Resources");
+	this.load.setPath("./Resources/");
 	this.load.image("bar", "./Sprites/bar.png");
 	this.load.image("ball", "./Sprites/ball.png");
-	this.load.spritesheet("blocks", "./Sprites/blocks.png", { frameWidth: 160, frameHeight: 64});
+	this.load.image("block", "./Sprites/block.png");
 	this.load.audio("reflect", [
 		"./Audios/reflect.mp3",
 		"./Audios/reflect.ogg"
 	]);
-
 }
 
 function create() {
-	bar = this.physics.add.image(300, 1100, "bar");
-	bar.body.immovable = true;
+	bar = this.add.image(300, 1100, "bar");
 	bar.scaleX = 1.0;
 	bar.scaleY = 0.5;
 
-	ball = this.physics.add.image(300, 650, "ball");
-	ball.body.collideWorldBounds = true;
-    ball.body.bounce.set(1);
-	ball.checkWorldBounds = true;
+	ball = this.add.image(300, 650, "ball");
 	ball.speed = 500;
 
-	var deg = Math.random() * 120 + 30;
+	let deg = Math.random() * 120 + 30;
 	ball.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
 	ball.dy = -Math.sin(deg * Math.PI / 360) * ball.speed;
-	ball.body.velocity.set(ball.dx, ball.dy);
-
-	this.physics.world.checkCollision.down = false;
 
 	reflect = this.sound.add("reflect");
 	blocks = this.physics.add.staticGroup();
 	blocks.scaleX = 0.5;
 	blocks.scaleY = 0.5;
-	for(var i = 0; i < 10; i++) {
-		for(var j = 0; j < 6; j++) {
-			var block = blocks.create(i * 80 + 40, j * 32 + 16, "blocks");
+	for(let i = 0; i < 10; i++) {
+		for(let j = 0; j < 6; j++) {
+			let block = blocks.create(i * 80 + 40, j * 32 + 16, "blocks");
 			block.scaleX = 0.5;
 			block.scaleY = 0.5;
 			block.width = 80;
@@ -101,14 +93,15 @@ function create() {
 }
 
 function update() {
-	this.physics.add.collider(ball, bar, hitbar, null, this);
+	/*
+	this.physics.add.collider(ball, bar, hit_bar, null, this);
 	this.physics.add.collider(ball, blocks, (hitObject1, hitObject2) => {
 		hitObject2.destroy();
 		console.log(hitObject2);
 		reflect.play();
 	}, null, this);
-
-	var pointer = this.input.activePointer;
+*/
+	let pointer = this.input.activePointer;
 	if (pointer.isDown) {
 		bar.x = pointer.x;
 
@@ -121,10 +114,10 @@ function update() {
 	}
 }
 
-function hitbar() {
+function hit_bar() {
 	if(ball.body.velocity.y > 0) {
-		var deg = Math.random() * 120 + 30;
-		ball.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
+		let deg = Math.random() * 120 + 30;
+		this.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
 		ball.dy = Math.sin(deg * Math.PI / 360) * ball.speed;
 		ball.body.velocity.set(ball.dx, ball.dy);
 		reflect.play();
