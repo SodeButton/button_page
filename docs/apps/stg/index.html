@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | ShootingGame</title>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      UnityLoader.instantiate("unityContainer", "Build/STGWeb.json");
-    </script>
-  </head>
-  <body>
-    <div id="unityContainer" style="width: 540px; height: 960px; margin: auto"></div>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta
+			name="viewport"
+			content="width=740, height=1400, user-scalable=no"
+		/>
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="シューティングゲーム" />
+		<meta
+			name="twitter:description"
+			content="Unityで制作したシューティングゲームです。"
+		/>
+		<meta
+			name="twitter:image"
+			content="https://sodebutton.github.io/apps/stg/img/favicon.png"
+		/>
+		<link rel="icon" type="image/png" href="./img/favicon.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon.png" />
+		<meta name="application-name" content="シューティングゲーム" />
+		<meta
+			name="msapplication-square70x70logo"
+			content="./img/favicon.png"
+		/>
+		<meta
+			name="msapplication-square150x150logo"
+			content="./img/favicon.png"
+		/>
+		<meta
+			name="msapplication-square310x310logo"
+			content="./img/favicon.png"
+		/>
+		<meta
+			name="msapplication-wide310x150logo"
+			content="./img/favicon.png"
+		/>
+		<title>シューティングゲーム</title>
+		<script src="Build/UnityLoader.js"></script>
+		<script>
+			UnityLoader.SystemInfo.mobile = false;
+			var gameInstance = UnityLoader.instantiate(
+				"gameContainer",
+				"Build/STGWeb.json"
+			);
+			window.onload = function () {
+				document.getElementById("gameContainer").style.margin = "auto";
+			};
+		</script>
+		<style>
+			#gameContainer {
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body style="margin: 0; padding: 0">
+		<div id="gameContainer" style="width: 720px; height: 1280px"></div>
+	</body>
 </html>
