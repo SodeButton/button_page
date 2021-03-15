@@ -52,7 +52,10 @@ class Block extends Phaser.Physics.Arcade.Sprite {
 let bar;
 let ball;
 let reflect;
-let blocks = new Array();
+let blocks = [];
+for(let i = 0; i < 10; i++) {
+	blocks[i] = [];
+}
 let is_hit = false;
 let hit_count = 0;
 
@@ -80,8 +83,7 @@ function create() {
 	ball.dy = -Math.sin(deg * Math.PI / 360);
 
 	reflect = this.sound.add("reflect");
-	for(let i = 0; i < 10; i++) {
-		blocks[i] = new Array();
+	for(let i = 1; i < 9; i++) {
 		for(let j = 0; j < 6; j++) {
 			blocks[i][j] = this.add.image(i * 80 + 40, j * 32 + 16, "block");
 			blocks[i][j].scaleX = 0.5;
@@ -93,15 +95,8 @@ function create() {
 }
 
 function update() {
-	/*
-	this.physics.add.collider(ball, bar, hit_bar, null, this);
-	this.physics.add.collider(ball, blocks, (hitObject1, hitObject2) => {
-		hitObject2.destroy();
-		console.log(hitObject2);
-		reflect.play();
-	}, null, this);
-*/
-	ball.speed = hit_count + 4;
+
+	ball.speed = Math.min(hit_count + 4, 20);
 	ball.x += ball.dx * ball.speed;
 	ball.y += ball.dy * ball.speed;
 
@@ -124,16 +119,30 @@ function update() {
 	for(let i = 0; i < 10; i++) {
 		for(let j = 0; j < 6; j++) {
 			if(blocks[i][j] != null) {
-				if (ball.x + 16 > blocks[i][j].x - 40 && ball.x - 16 < blocks[i][j].x + 40 &&
-					ball.y + 16 > blocks[i][j].y - 16 && ball.y - 16 < blocks[i][j].y + 16) {
+				if (ball.x + 16 > blocks[i][j].x - 40 && ball.x - 16 < blocks[i][j].x + 40) {
 
-					//ball.dx *= -1;
-					ball.dy *= -1;
-					blocks[i][j].destroy();
-					blocks[i][j] = null;
-					reflect.play();
-					is_break = true;
-					break;
+					if (ball.y + 16 >= blocks[i][j].y - 16 && ball.y + 16 <= blocks[i][j].y ||
+						ball.y - 16 <= blocks[i][j].y + 16 && ball.y - 16 >= blocks[i][j].y) {
+
+						ball.dy *= -1;
+						blocks[i][j].destroy();
+						blocks[i][j] = null;
+						reflect.play();
+						is_break = true;
+						break;
+					}
+				} else if (ball.y + 16 > blocks[i][j].y - 16 && ball.y - 16 < blocks[i][j].y + 16) {
+
+					if (ball.x + 16 >= blocks[i][j].x - 40 && ball.x + 16 <= blocks[i][j].x ||
+						ball.x - 16 <= blocks[i][j].x + 40 && ball.x - 16 >= blocks[i][j].x) {
+
+						ball.dx *= -1;
+						blocks[i][j].destroy();
+						blocks[i][j] = null;
+						reflect.play();
+						is_break = true;
+						break;
+					}
 				}
 			}
 		}
@@ -165,14 +174,3 @@ function update() {
 		this.physics.pause();
 	}
 }
-/*
-function hit_bar() {
-	if(ball.body.velocity.y > 0) {
-		let deg = Math.random() * 120 + 30;
-		this.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
-		ball.dy = Math.sin(deg * Math.PI / 360) * ball.speed;
-		ball.body.velocity.set(ball.dx, ball.dy);
-		reflect.play();
-	}
-}
-*/
