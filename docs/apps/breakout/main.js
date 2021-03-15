@@ -52,7 +52,9 @@ class Block extends Phaser.Physics.Arcade.Sprite {
 let bar;
 let ball;
 let reflect;
-let blocks;
+let blocks = new Array();
+let is_hit = false;
+let hit_count = 0;
 
 function preload() {
 	this.load.setPath("./Resources/");
@@ -71,23 +73,21 @@ function create() {
 	bar.scaleY = 0.5;
 
 	ball = this.add.image(300, 650, "ball");
-	ball.speed = 500;
+	ball.speed = 4;
 
 	let deg = Math.random() * 120 + 30;
-	ball.dx = Math.cos(deg * Math.PI / 360) * ball.speed;
-	ball.dy = -Math.sin(deg * Math.PI / 360) * ball.speed;
+	ball.dx = Math.cos(deg * Math.PI / 360);
+	ball.dy = -Math.sin(deg * Math.PI / 360);
 
 	reflect = this.sound.add("reflect");
-	blocks = this.physics.add.staticGroup();
-	blocks.scaleX = 0.5;
-	blocks.scaleY = 0.5;
 	for(let i = 0; i < 10; i++) {
+		blocks[i] = new Array();
 		for(let j = 0; j < 6; j++) {
-			let block = blocks.create(i * 80 + 40, j * 32 + 16, "blocks");
-			block.scaleX = 0.5;
-			block.scaleY = 0.5;
-			block.width = 80;
-			block.height = 32;
+			blocks[i][j] = this.add.image(i * 80 + 40, j * 32 + 16, "block");
+			blocks[i][j].scaleX = 0.5;
+			blocks[i][j].scaleY = 0.5;
+			blocks[i][j].width = 80;
+			blocks[i][j].height = 32;
 		}
 	}
 }
@@ -101,6 +101,58 @@ function update() {
 		reflect.play();
 	}, null, this);
 */
+	ball.speed = hit_count + 4;
+	ball.x += ball.dx * ball.speed;
+	ball.y += ball.dy * ball.speed;
+
+	if(ball.x + 16 > this.scale.width) {
+		ball.dx *= -1;
+		reflect.play();
+	} else if(ball.x - 16 < 0) {
+		ball.dx *= -1;
+		reflect.play();
+	}
+	if(ball.y + 16 > this.scale.height) {
+		ball.dy *= -1;
+		reflect.play();
+	} else if(ball.y - 16 < 0) {
+		ball.dy *= -1;
+		reflect.play();
+	}
+
+	let is_break = false;
+	for(let i = 0; i < 10; i++) {
+		for(let j = 0; j < 6; j++) {
+			if(blocks[i][j] != null) {
+				if (ball.x + 16 > blocks[i][j].x - 40 && ball.x - 16 < blocks[i][j].x + 40 &&
+					ball.y + 16 > blocks[i][j].y - 16 && ball.y - 16 < blocks[i][j].y + 16) {
+
+					//ball.dx *= -1;
+					ball.dy *= -1;
+					blocks[i][j].destroy();
+					blocks[i][j] = null;
+					reflect.play();
+					is_break = true;
+					break;
+				}
+			}
+		}
+		if(is_break) break;
+	}
+
+	if(ball.x + 16 > bar.x - 64 && ball.x - 16 < bar.x + 64 && ball.y + 16 > bar.y - 16) {
+		if(!is_hit) {
+			let deg = Math.random() * 120 + 30;
+			ball.dx = Math.cos(deg * Math.PI / 360.0);
+			ball.dy = -Math.sin(deg * Math.PI / 360.0);
+			reflect.play();
+			is_hit = true;
+			hit_count++;
+		}
+	} else {
+		is_hit = false;
+	}
+
 	let pointer = this.input.activePointer;
 	if (pointer.isDown) {
 		bar.x = pointer.x;
@@ -113,7 +165,7 @@ function update() {
 		this.physics.pause();
 	}
 }
-
+/*
 function hit_bar() {
 	if(ball.body.velocity.y > 0) {
 		let deg = Math.random() * 120 + 30;
@@ -123,3 +175,4 @@ function hit_bar() {
 		reflect.play();
 	}
 }
+*/
